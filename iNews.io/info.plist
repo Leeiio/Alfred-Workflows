@@ -17,11 +17,22 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>DC72912E-F44D-4990-926F-A83BB40EBF67</key>
+		<key>BEC35601-5C04-410E-814E-032770A1F96A</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>63C53694-2422-416F-AEFB-032351AF5738</string>
+				<string>12A8023E-9457-44E9-9ACB-CAE71DBA62E4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>CA614823-B776-45FB-B0CF-5A73CD5D53ED</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BEC35601-5C04-410E-814E-032770A1F96A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -43,20 +54,27 @@
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>63</integer>
 				<key>keyword</key>
-				<string>inews hot</string>
+				<string>inews</string>
 				<key>runningsubtext</key>
 				<string>Please wait...</string>
 				<key>script</key>
 				<string>require_once('workflows.php');
 $w = new Workflows();
+$query = urlencode( "{query}" );
 
-$url = "http://inews.io/api/alfred/index";
-$content = $w-&gt;request( $url );
-$content_items = json_decode( $content );
+if($query == "new"){
+	$url = "http://inews.io/api/alfred/latest";
+	$content = $w-&gt;request( $url );
+	$content_items = json_decode( $content );
+}else{
+	$url = "http://inews.io/api/alfred/index";
+	$content = $w-&gt;request( $url );
+	$content_items = json_decode( $content );	
+}
 
 function digg_count($count) {
   if($count == '0' ) {
@@ -94,13 +112,13 @@ endif;
 
 echo $w-&gt;toxml();</string>
 				<key>subtext</key>
-				<string>Get the hottest news from iNews.io</string>
+				<string>Type "new" for getting latest news</string>
 				<key>title</key>
-				<string>iNews.io Hottest News</string>
+				<string>iNews.io News</string>
 				<key>type</key>
 				<integer>1</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -126,75 +144,57 @@ echo $w-&gt;toxml();</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>63</integer>
+				<integer>0</integer>
 				<key>keyword</key>
-				<string>inews new</string>
-				<key>runningsubtext</key>
-				<string>Please wait...</string>
-				<key>script</key>
-				<string>require_once('workflows.php');
-$w = new Workflows();
-
-$url = "http://inews.io/api/alfred/latest";
-$content = $w-&gt;request( $url );
-$content_items = json_decode( $content );
-
-function digg_count($count) {
-  if($count == '0' ) {
-    $icon = 'digg_0.png';
-  }
-  elseif( $count == '1' ) {
-    $icon = 'digg_1.png';
-  }
-  elseif( $count &gt; '1' ) {
-    $icon = 'digg_1+.png';
-  }
-  elseif( $count &gt; '10' ) {
-    $icon = 'digg_10+.png';
-  }
-  elseif( $count &gt; '20' ) {
-    $icon = 'digg_20+.png';
-  }
-  elseif( $count &gt; '50' ) {
-    $icon = 'digg_50+.png';
-  }
-  elseif( $count &gt; '100' ) {
-    $icon = 'digg_100+.png';
-  }
-  return $icon;
-}
-
-foreach($content_items as $item ):
- 	$w-&gt;result( $item-&gt;id, 'http://inews.io/article/'.$item-&gt;id, $item-&gt;title, $item-&gt;content, digg_count($item-&gt;digg_count) );
-endforeach;
-
-$results = $w-&gt;results();
-if ( count( $results ) == 0 ):
-  $w-&gt;result( 'inews', 'http://inews.io', 'No News Found.', 'Please visit the inews.io to see what happend :(', 'icon.png' );
-endif;
-
-echo $w-&gt;toxml();</string>
+				<string>inews</string>
 				<key>subtext</key>
-				<string>Get the Latest news from iNews.io</string>
-				<key>title</key>
-				<string>iNews.io Latest News</string>
-				<key>type</key>
-				<integer>1</integer>
+				<string>For a list of arguments type "inews help"</string>
+				<key>text</key>
+				<string>inews help</string>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>DC72912E-F44D-4990-926F-A83BB40EBF67</string>
+			<string>CA614823-B776-45FB-B0CF-5A73CD5D53ED</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>$query = urlencode( "{query}" );
+
+if($query == "help"){
+	echo "Available Commands:
+	* new 		— Show the latest news from iNews.io ";
+}</string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BEC35601-5C04-410E-814E-032770A1F96A</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>12A8023E-9457-44E9-9ACB-CAE71DBA62E4</string>
 		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>12A8023E-9457-44E9-9ACB-CAE71DBA62E4</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
 		<key>63C53694-2422-416F-AEFB-032351AF5738</key>
 		<dict>
 			<key>ypos</key>
@@ -203,12 +203,17 @@ echo $w-&gt;toxml();</string>
 		<key>B3422CDF-DCA4-43DD-8A89-EF52B8B7CC74</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>60</real>
 		</dict>
-		<key>DC72912E-F44D-4990-926F-A83BB40EBF67</key>
+		<key>BEC35601-5C04-410E-814E-032770A1F96A</key>
 		<dict>
 			<key>ypos</key>
-			<real>120</real>
+			<real>180</real>
+		</dict>
+		<key>CA614823-B776-45FB-B0CF-5A73CD5D53ED</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>

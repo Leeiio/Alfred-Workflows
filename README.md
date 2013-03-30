@@ -27,6 +27,7 @@ A workflow for getting the news from iNew.io.
 
 Type `inews` in Alfred and follow it's instructions.
 
-
+Type `inews help` for a list of arguments.
+ 
 ## Credits
 Created by @[leeiio](https://twitter.com/leeiio 'Contact me on Twitter') under [MIT LICENSE](http://rem.mit-license.org/) 
