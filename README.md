@@ -23,7 +23,7 @@ A workflow for getting the news from iNew.io.
 
 #### Usage
 
-Type `inews hot` in Alfred and follow it's instructions.
+Type `inews` in Alfred and follow it's instructions.
 
 
 ## Credits
