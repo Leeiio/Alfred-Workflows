@@ -21,6 +21,8 @@ A workflow for getting the news from iNew.io.
 
 ![Example 1](https://raw.github.com/Leeiio/Alfred-Workflows/master/iNews.io/screenshots/1.png)
 
+![Example 2](https://raw.github.com/Leeiio/Alfred-Workflows/master/iNews.io/screenshots/2.png)
+
 #### Usage
 
 Type `inews` in Alfred and follow it's instructions.
