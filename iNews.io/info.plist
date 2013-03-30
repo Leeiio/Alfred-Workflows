@@ -47,89 +47,6 @@
 				<key>escaping</key>
 				<integer>63</integer>
 				<key>keyword</key>
-				<string>inews new</string>
-				<key>runningsubtext</key>
-				<string>Please wait...</string>
-				<key>script</key>
-				<string>require_once('workflows.php');
-$w = new Workflows();
-
-$url = "http://inews.io/api/alfred/latest";
-$content = $w-&gt;request( $url );
-$content_items = json_decode( $content );
-
-function digg_count($count) {
-  if($count == '0' ) {
-    $icon = 'digg_0.png';
-  }
-  elseif( $count == '1' ) {
-    $icon = 'digg_1.png';
-  }
-  elseif( $count &gt; '1' ) {
-    $icon = 'digg_1+.png';
-  }
-  elseif( $count &gt; '10' ) {
-    $icon = 'digg_10+.png';
-  }
-  elseif( $count &gt; '20' ) {
-    $icon = 'digg_20+.png';
-  }
-  elseif( $count &gt; '50' ) {
-    $icon = 'digg_50+.png';
-  }
-  elseif( $count &gt; '100' ) {
-    $icon = 'digg_100+.png';
-  }
-  return $icon;
-}
-
-foreach($content_items as $item ):
- 	$w-&gt;result( $item-&gt;id, $item-&gt;link, $item-&gt;title, $item-&gt;content, digg_count($item-&gt;digg_count) );
-endforeach;
-
-$results = $w-&gt;results();
-if ( count( $results ) == 0 ):
-  $w-&gt;result( 'inews', 'http://inews.io', 'No News Found.', 'Please visit the inews.io to see what happend :(', 'icon.png' );
-endif;
-
-echo $w-&gt;toxml();</string>
-				<key>subtext</key>
-				<string>Get the Latest news from iNews.io</string>
-				<key>title</key>
-				<string>iNews.io Latest News</string>
-				<key>type</key>
-				<integer>1</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>DC72912E-F44D-4990-926F-A83BB40EBF67</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>plusspaces</key>
-				<false/>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>63C53694-2422-416F-AEFB-032351AF5738</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>keyword</key>
 				<string>inews hot</string>
 				<key>runningsubtext</key>
 				<string>Please wait...</string>
@@ -167,7 +84,7 @@ function digg_count($count) {
 }
 
 foreach($content_items as $item ):
- 	$w-&gt;result( $item-&gt;id, $item-&gt;link, $item-&gt;title, $item-&gt;content, digg_count($item-&gt;digg_count) );
+ 	$w-&gt;result( $item-&gt;id, 'http://inews.io/article/'.$item-&gt;id, $item-&gt;title, $item-&gt;content, digg_count($item-&gt;digg_count) );
 endforeach;
 
 $results = $w-&gt;results();
@@ -190,6 +107,89 @@ echo $w-&gt;toxml();</string>
 			<key>uid</key>
 			<string>B3422CDF-DCA4-43DD-8A89-EF52B8B7CC74</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>63C53694-2422-416F-AEFB-032351AF5738</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>inews new</string>
+				<key>runningsubtext</key>
+				<string>Please wait...</string>
+				<key>script</key>
+				<string>require_once('workflows.php');
+$w = new Workflows();
+
+$url = "http://inews.io/api/alfred/latest";
+$content = $w-&gt;request( $url );
+$content_items = json_decode( $content );
+
+function digg_count($count) {
+  if($count == '0' ) {
+    $icon = 'digg_0.png';
+  }
+  elseif( $count == '1' ) {
+    $icon = 'digg_1.png';
+  }
+  elseif( $count &gt; '1' ) {
+    $icon = 'digg_1+.png';
+  }
+  elseif( $count &gt; '10' ) {
+    $icon = 'digg_10+.png';
+  }
+  elseif( $count &gt; '20' ) {
+    $icon = 'digg_20+.png';
+  }
+  elseif( $count &gt; '50' ) {
+    $icon = 'digg_50+.png';
+  }
+  elseif( $count &gt; '100' ) {
+    $icon = 'digg_100+.png';
+  }
+  return $icon;
+}
+
+foreach($content_items as $item ):
+ 	$w-&gt;result( $item-&gt;id, 'http://inews.io/article/'.$item-&gt;id, $item-&gt;title, $item-&gt;content, digg_count($item-&gt;digg_count) );
+endforeach;
+
+$results = $w-&gt;results();
+if ( count( $results ) == 0 ):
+  $w-&gt;result( 'inews', 'http://inews.io', 'No News Found.', 'Please visit the inews.io to see what happend :(', 'icon.png' );
+endif;
+
+echo $w-&gt;toxml();</string>
+				<key>subtext</key>
+				<string>Get the Latest news from iNews.io</string>
+				<key>title</key>
+				<string>iNews.io Latest News</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>DC72912E-F44D-4990-926F-A83BB40EBF67</string>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -208,7 +208,7 @@ echo $w-&gt;toxml();</string>
 		<key>DC72912E-F44D-4990-926F-A83BB40EBF67</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>120</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
