@@ -17,7 +17,7 @@ See the directories for more details.
 
 A workflow for getting the news from iNew.io.
 
-[\[Download Link\]](https://github.com/Leeiio/Alfred-Workflows/blob/master/iNews.io.alfredworkflow)
+[\[Download Link\]](https://github.com/Leeiio/Alfred-Workflows/raw/master/iNews.io.alfredworkflow)
 
 ![Example 1](https://raw.github.com/Leeiio/Alfred-Workflows/master/iNews.io/screenshots/1.png)
 
