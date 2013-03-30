@@ -96,7 +96,7 @@ echo $w-&gt;toxml();</string>
 				<key>subtext</key>
 				<string>Get the Latest news from iNews.io</string>
 				<key>title</key>
-				<string>iNews.io Latest news</string>
+				<string>iNews.io Latest News</string>
 				<key>type</key>
 				<integer>1</integer>
 				<key>withspace</key>
