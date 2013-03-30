@@ -47,7 +47,7 @@
 				<key>escaping</key>
 				<integer>63</integer>
 				<key>keyword</key>
-				<string>inews hot</string>
+				<string>inews</string>
 				<key>runningsubtext</key>
 				<string>Please wait...</string>
 				<key>script</key>
