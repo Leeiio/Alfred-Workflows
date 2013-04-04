@@ -83,16 +83,16 @@ function digg_count($count) {
   elseif( $count == '1' ) {
     $icon = 'digg_1.png';
   }
-  elseif( $count &gt; '1' ) {
+  elseif( $count &gt; '1' &amp;&amp; $count &lt; '11' ) {
     $icon = 'digg_1+.png';
   }
-  elseif( $count &gt; '10' ) {
+  elseif( $count &gt; '10' &amp;&amp; $count &lt; '21' ) {
     $icon = 'digg_10+.png';
   }
-  elseif( $count &gt; '20' ) {
+  elseif( $count &gt; '20' &amp;&amp; $count &lt; '51' ) {
     $icon = 'digg_20+.png';
   }
-  elseif( $count &gt; '50' ) {
+  elseif( $count &gt; '50' &amp;&amp; $count &lt; '101' ) {
     $icon = 'digg_50+.png';
   }
   elseif( $count &gt; '100' ) {
